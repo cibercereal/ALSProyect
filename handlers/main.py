@@ -19,7 +19,8 @@ import time
 from webapp2_extras import jinja2
 
 import datetime as dt
-from model.saludo import Saludo
+from model.register import Saludo
+from model.register import Register
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):

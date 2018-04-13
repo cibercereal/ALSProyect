@@ -9,12 +9,23 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /src
+  static_dir: src
+  application_readable: true
+
+- url: /res
+  static_dir: res
+
+- url: /templates
+  static_dir: templates
+  application_readable: true
+
+- url: /css
+  static_dir: css
+  application_readable: true
+
 - url: .*
   script: handlers.main.app
-
-- url: /res/*
-  static_dir: res
-  upload: res
 
 libraries:
 - name: webapp2

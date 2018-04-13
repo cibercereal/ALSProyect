@@ -2,7 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Libro de visitas</title>
+     <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="/css/styles.css"/><title>Login on Crunch</title>
+
     <script>
         function showError(msg) {
             const dvError = document.getElementById("dvError");
@@ -32,7 +42,7 @@
     </script>
 </head>
 <body>
-    <p>Hoy es: {{ fecha.date() }}</p>
+    <!--<p>Hoy es: {{ fecha.date() }}</p>
     <h1>Libro de visitas</h1>
     <h2>Saludos de los fans:</h2>
     <p>
@@ -64,9 +74,9 @@
     <div>
         <form id="login" onsubmit="javascript: return chk()"
               method="POST" action="/">
-            <input type="text" name="user"
+            <label>User: </label><input type="text" name="user"
                    id="edUser" placeholder="Insert your user"/><br>
-            <input type="password" name="password"
+            <label>Password: </label><input type="password" name="password"
                    id="edPassword" placeholder="Insert your password"/>
             <br>
             <input type="submit" id="btLogin"/>
@@ -74,6 +84,55 @@
     </div>
     <div id="dvError">
 
-    </div>
+    </div>-->
+	<div>
+		<nav class="navbar navbar-default navigation-clean-search">
+			<div class="navbar-header">
+				<a class="navbar-brand">Crunch</a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Desplegar navegación</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li role="presentation"><a href="">Contact</a></li>
+					<li role="presentation"><a>Language: English</a></li>
+				</ul>
+				<a class="btn btn-default navbar-btn navbar-rigth action-button"
+					role="button" href="/templates/index.html">Start</a>
+			</div>
+
+		</nav>
+	</div>
+
+	<main>
+
+		<div class="login-clean">
+			<form action="" method="post">
+				<h2 class="sr-only">Login Form</h2>
+				<div class="illustration">
+					<i class="" aria-hidden="true"><img class="login-icon" src="/src/icono.png" alt="Crunch"/></i>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="username" placeholder="Username" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="password" name="passwd" placeholder="Password" />
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary btn-block" type="submit">Logg In</button>
+				</div>
+				<a class="forgot" href="/templates/register.html">Not user yet? Register now</a>
+			</form>
+		</div>
+
+	</main>
+
+	<footer> </footer>
+
 </body>
 </html>
