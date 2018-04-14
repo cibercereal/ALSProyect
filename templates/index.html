@@ -1,118 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-     <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-	<link rel="stylesheet" href="/css/styles.css"/><title>Login on Crunch</title>
-
-    <script>
-        function showError(msg) {
-            const dvError = document.getElementById("dvError");
-
-            dvError.innerHTML = msg;
-            dvError.style.display = "block";
-        }
-
-        function chk()
-        {
-            const edName = document.getElementById("edName");
-            const edSaludo = document.getElementById("edSaludo");
-            const dvError = document.getElementById("dvError");
-
-            dvError.style.display = "none";
-
-            if(edName.value.trim().length === 0){
-                showError("Se requiere un nombre.");
-                toret = false;
-            }
-
-            if(edSaludo.value.trim().length === 0){
-                showError("Se requiere un saludo.");
-                toret = false;
-            }
-        }
-    </script>
-</head>
-<body>
-    <!--<p>Hoy es: {{ fecha.date() }}</p>
-    <h1>Libro de visitas</h1>
-    <h2>Saludos de los fans:</h2>
-    <p>
-        {%if saludos and saludos.count() > 0 %}
-            <table>
-            {% for saludo in saludos %}
-                <tr>
-                    <td>{{saludo.fecha.date()}}</td>
-                    <td>{{saludo.nombre}}</td>
-                    <td>{{saludo.texto}}</td>
-                </tr>
-            {% endfor %}
-            </table>
-        {% else %}
-            Por ahora no hay saludos.
-        {% endif %}
-    </p>
-    <h2>Déjame un saludo!</h2>
-    <p>
-        <form id="frmSaludo" onsubmit="javascript: return chk()"
-              method="POST" action="/">
-            <input type="text" name="name"
-                   id="edName" placeholder="tu nombre..."/>
-            <input type="text" name="saludo"
-                   id="edSaludo" placeholder="tu saludo..."/>
-            <input type="submit" id="btSend"/>
-        </form>
-    </p>
-    <div>
-        <form id="login" onsubmit="javascript: return chk()"
-              method="POST" action="/">
-            <label>User: </label><input type="text" name="user"
-                   id="edUser" placeholder="Insert your user"/><br>
-            <label>Password: </label><input type="password" name="password"
-                   id="edPassword" placeholder="Insert your password"/>
-            <br>
-            <input type="submit" id="btLogin"/>
-        </form>
-    </div>
-    <div id="dvError">
-
-    </div>-->
-	<div>
-		<nav class="navbar navbar-default navigation-clean-search">
-			<div class="navbar-header">
-				<a class="navbar-brand">Crunch</a>
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Desplegar navegación</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
-
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					<li role="presentation"><a href="">Contact</a></li>
-					<li role="presentation"><a>Language: English</a></li>
-				</ul>
-				<a class="btn btn-default navbar-btn navbar-rigth action-button"
-					role="button" href="/templates/index.html">Start</a>
-			</div>
-
-		</nav>
-	</div>
-
-	<main>
-
+{% extends "skeleton.html" %}
+{% block content %}
 		<div class="login-clean">
-			<form action="" method="post">
+			<form action="/main" onsubmit="javascript: return chk()" method="post">
 				<h2 class="sr-only">Login Form</h2>
 				<div class="illustration">
 					<i class="" aria-hidden="true"><img class="login-icon" src="/src/icono.png" alt="Crunch"/></i>
@@ -126,13 +15,7 @@
 				<div class="form-group">
 					<button class="btn btn-primary btn-block" type="submit">Logg In</button>
 				</div>
-				<a class="forgot" href="/templates/register.html">Not user yet? Register now</a>
+				<a class="forgot" href="/register">Not user yet? Register now</a>
 			</form>
 		</div>
-
-	</main>
-
-	<footer> </footer>
-
-</body>
-</html>
+{% endblock %}

@@ -9,6 +9,10 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /templates
+  static_dir: templates
+  application_readable: true
+
 - url: /src
   static_dir: src
   application_readable: true
@@ -16,13 +20,12 @@ handlers:
 - url: /res
   static_dir: res
 
-- url: /templates
-  static_dir: templates
-  application_readable: true
-
 - url: /css
   static_dir: css
   application_readable: true
+
+- url: /register
+  script: handlers.register.app
 
 - url: .*
   script: handlers.main.app

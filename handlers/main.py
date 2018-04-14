@@ -15,37 +15,20 @@
 # limitations under the License.
 #
 import webapp2
-import time
 from webapp2_extras import jinja2
+from google.appengine.api import users
 
-import datetime as dt
-from model.register import Saludo
-from model.register import Register
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        jinja = jinja2.get_jinja2(app = self.app)
-        saludos = Saludo.query().order(-Saludo.fecha)
 
         values = {
-            "fecha": dt.datetime.today(),
-            "saludos": saludos
+
         }
 
+        jinja = jinja2.get_jinja2(app=self.app)
         self.response.write(jinja.render_template("index.html", **values))
 
-    def post(self):
-        name = self.request.get("name","").strip()
-        saludo = self.request.get("saludo", "").strip()
-
-        if len(name) == 0 or len(saludo) == 0:
-            self.response.write("Se requiere un nombre y un saludo.")
-            return
-
-        saludo = Saludo(nombre=name, texto=saludo)
-        saludo.put()
-        time.sleep(1)
-        self.redirect("/")
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)

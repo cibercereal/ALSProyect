@@ -14,4 +14,7 @@ class Register(ndb.Model):
     email = ndb.StringProperty()
     birthdate = ndb.DateProperty()
     password = ndb.StringProperty()
-    rpassword = ndb.StringProperty()
+
+class Login(ndb.Model):
+    username = ndb.StringProperty()
+    password = ndb.StringProperty()
