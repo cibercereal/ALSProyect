@@ -1,31 +1,101 @@
 {% extends "skeleton.html" %}
 {% block content %}
+<script>
+	function hideError(){
+	    document.getElementById("dvError").style.display = "none";
+	}
+
+	function showError(msg)
+	{
+            var dvError = document.getElementById("dvError");
+			var pError = document.createElement( "p" );
+
+			dvError.innerHTML = "";
+			dvError.appendChild( pError );
+			pError.appendChild( document.createTextNode( msg ) );
+			dvError.style.display = "block";
+	}
+
+        function chk()
+        {
+            var toret = true;
+
+            var username = document.getElementById("username");
+            var name = document.getElementById("name");
+            var surname = document.getElementById("surname");
+            var email = document.getElementById("email");
+            var birthdate = document.getElementById("birthdate");
+            var password = document.getElementById("password");
+            var rpassword = document.getElementById("rpassword");
+			var dvError = document.getElementById("dvError");
+
+			hideError();
+
+            if(username.value.trim().length === 0){
+                showError("Username can not be null.");
+                toret = false;
+            }else if(username.value.trim().length < 5){
+                showError("Username must have at least 5 characters");
+                toret = false;
+            }else if(name.value.trim().length === 0){
+                showError("Name can not be null.");
+                toret = false;
+            }else if(surname.value.trim().length === 0){
+                showError("Surname can not be null.");
+				toret = false;
+			}else if(email.value.trim().length === 0){
+                showError("Email can not be null.");
+				toret = false;
+			}/*else if (false !== (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(valor))){
+			   showError("Invalid email.");
+			   toret = false;
+			}*/else if(birthdate.value.trim().length === 0){
+                showError("Birthdate can not be null.");
+                toret = false;
+			}/*else if(birthdate.value.trim().match(/^\d{2}\/\d{2}\/\d{4}$/)){
+                showError("Incorrect type of date.");
+                toret = false;
+			}*/else if(password.value.trim().length === 0){
+                showError("Password can not be null.");
+                toret = false;
+			}else if(password.value.trim() != rpassword.value.trim()){
+                showError("Passwords do not match.");
+                toret = false;
+			}
+
+			return toret;
+        }
+</script>
+
 		<div class="login-clean">
-			<form action="" method="post">
+			<form onsubmit="javascript: return chk();" action="/register" method="POST">
 				<h2 class="sr-only">Register Form</h2>
 				<div class="illustration">
 					<i class="" aria-hidden="true"><img class="login-icon" src="/src/icono.png" alt="Crunch"/></i>
 				</div>
+				<div class="form-group" id="dvError" style="color:darkblue;background-color:red;display:none">
+
+				</div>
 				<div class="form-group">
-					Username: <input class="form-control" type="text" name="username" placeholder="Username" />
+					Username: <input class="form-control" type="text" id="username" name="username" placeholder="Username" />
 				</div>
                 <div class="form-group">
-					Name: <input class="form-control" type="text" name="name" placeholder="Name" />
+					Name: <input class="form-control" type="text" id="name" name="name" placeholder="Name" />
 				</div>
                 <div class="form-group">
-					Surname: <input class="form-control" type="text" name="surname" placeholder="Surname" />
+					Surname: <input class="form-control" type="text" id="surname" name="surname" placeholder="Surname" />
 				</div>
                 <div class="form-group">
-					Email: <input class="form-control" type="email" name="email" placeholder="Email" />
+					Email: <input class="form-control" type="text" id="email" name="email" placeholder="Email" />
 				</div>
                 <div class="form-group">
-					Birthdate: <input class="form-control" type="date" name="birthdate" placeholder="Birthdate" />
+					Birthdate: <input class="form-control" type="date" id="birthdate" name="birthdate" placeholder="Birthdate" />
 				</div>
                 <div class="form-group">
-					Password: <input class="form-control" type="password" name="passwd" placeholder="Password" />
+					Password: <input class="form-control" type="password" id="password" name="passwd" placeholder="Password" />
 				</div>
                 <div class="form-group">
-					Repeat Password: <input class="form-control" type="password" name="Rpasswd" placeholder="Rpassword" />
+                Repeat Password: <input class="form-control" type="password" id="rpassword" name="rpasswd" placeholder="Rpassword" />
 				</div>
 				<div class="form-group">
 					<button class="btn btn-primary btn-block" type="submit">Check In</button>

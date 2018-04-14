@@ -21,14 +21,17 @@ class RegisterHandler(webapp2.RequestHandler):
         username = self.request.get("username", "").strip()
         email = self.request.get("email", "").strip()
         birthdate = self.request.get("birthdate", "").strip()
-        password = self.request.get("password", "").strip()
-        rpassword = self.request.get("rpassword", "").strip()
+        password = self.request.get("passwd", "").strip()
+        rpassword = self.request.get("rpasswd", "").strip()
 
         if len(name) == 0 or len(surname) == 0 or len(username) == 0 or \
                 len(email) == 0 or len(birthdate) == 0 or len(password) == 0\
                 or len(rpassword) == 0:
             self.response.write("It is necessary to complete all fields of the record.")
             return
+
+        if len(username) < 5:
+            self.response.write("Username must have at least 5 characters.")
 
         if rpassword != password:
             self.response.write("Passwords do not match.")

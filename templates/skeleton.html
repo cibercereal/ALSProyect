@@ -12,34 +12,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="/css/styles.css"/><title>Login on Crunch</title>
-
-    <script>
-        function showError(msg) {
-            const dvError = document.getElementById("dvError");
-
-            dvError.innerHTML = msg;
-            dvError.style.display = "block";
-        }
-
-        function chk()
-        {
-            const edName = document.getElementById("edName");
-            const edSaludo = document.getElementById("edSaludo");
-            const dvError = document.getElementById("dvError");
-
-            dvError.style.display = "none";
-
-            if(edName.value.trim().length === 0){
-                showError("Se requiere un nombre.");
-                toret = false;
-            }
-
-            if(edSaludo.value.trim().length === 0){
-                showError("Se requiere un saludo.");
-                toret = false;
-            }
-        }
-    </script>
 </head>
 <body>
 	<div>
