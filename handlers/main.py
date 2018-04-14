@@ -16,7 +16,8 @@
 #
 import webapp2
 from webapp2_extras import jinja2
-from google.appengine.api import users
+from model.register import Register
+import time
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -29,6 +30,30 @@ class MainHandler(webapp2.RequestHandler):
         jinja = jinja2.get_jinja2(app=self.app)
         self.response.write(jinja.render_template("index.html", **values))
 
+    def post(self):
+        username = self.request.get("username", "").strip()
+        password = self.request.get("passwd", "").strip()
+
+        if len(username) == 0 or len(password) == 0:
+            self.response.write("It is necessary to complete all fields.")
+            return
+
+        if len(username) < 5:
+            self.response.write("Username must have at least 5 characters.")
+
+        user = Register.query(Register.username == username, Register.password == password)
+
+        if user.count() == 1:
+            self.redirect("/welcome")
+            return
+        else:
+            values = {
+                "error_login": "Incorrect username or password"
+            }
+
+            jinja = jinja2.get_jinja2(app=self.app)
+            self.response.write(jinja.render_template("index.html", **values))
+            return
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)

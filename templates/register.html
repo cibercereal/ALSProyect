@@ -66,7 +66,11 @@
 			return toret;
         }
 </script>
-
+    {% if error_register %}
+		<script>
+			alert("{{error_register}}");
+		</script>
+	{% endif %}
 		<div class="login-clean">
 			<form onsubmit="javascript: return chk();" action="/register" method="POST">
 				<h2 class="sr-only">Register Form</h2>

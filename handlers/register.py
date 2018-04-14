@@ -1,6 +1,7 @@
 import webapp2
 import os
 import time
+import google.appengine.ext.ndb as ndb
 from webapp2_extras import jinja2
 from model.register import Register
 
@@ -39,9 +40,20 @@ class RegisterHandler(webapp2.RequestHandler):
 
         user = Register(username=username, name=name, surname=surname,
                         email=email, birthdate=birthdate, password=password)
-        user.put()
-        time.sleep(1)
-        self.redirect("/")
+        userToPut = Register.query(ndb.OR(Register.username == username, Register.email == email))
+
+        if userToPut.count() > 0:
+            values = {
+                "error_register": "The username or email already exists."
+            }
+
+            jinja = jinja2.get_jinja2(app=self.app)
+            self.response.write(jinja.render_template("register.html", **values))
+            return
+        else:
+            user.put()
+            time.sleep(1)
+            self.redirect("/")
 
 app = webapp2.WSGIApplication([
     ('/register', RegisterHandler)
