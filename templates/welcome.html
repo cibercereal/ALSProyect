@@ -1,0 +1,77 @@
+{% extends "skeleton2.html" %}
+{% block content %}
+<script>function A()
+{
+  var text = document.getElementById("crunch");
+  text.style.display = "none";
+  var textarea = document.getElementById("br");
+  textarea.style.display = "block";
+
+}
+function B()
+{
+  var text = document.getElementById("crunch");
+  text.style.display = "block";
+  var textarea = document.getElementById("br");
+  textarea.style.display = "none";
+}</script>
+<div class="center-block col-md-3 col-sm-2 item">
+    <div class="exercise-tables-background center-block">
+        <h4>{{name}}&nbsp;{{surname}}</h4><br>@{{username}}
+        <div class="exercise-tables-background center-block">
+            <div class="col-md-4 col-sm-2 item">
+                <a href="/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
+            </div>
+            <div class="col-md-4 col-sm-2 item">
+                <a href="">Follow</a><br>{{follow}}
+            </div>
+            <div class="col-md-4 col-sm-2 item">
+                <a href="">Followers</a><br>{{followers}}
+            </div><br>
+        </div>
+    </div>
+
+	<div class="exercise-tables-background center-block">
+        <table id="table-margin" class="table">
+				<thead>
+				<tr>
+					<th>Last trends</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--<?php foreach ($users as $user): ?>-->
+                <tr>
+                    <td class=""><a href=""><span class="">#Hello world</span></a></td>
+                </tr>
+                <tr>
+                    <td class=""><a href=""><span class="">#Bruno</span></a></td>
+                </tr>
+                <tr>
+                    <td class=""><a href=""><span class="">#BD</span></a></td>
+                </tr>
+				<!--<?php endforeach; ?>-->
+			</tbody>
+        </table>
+    </div>
+</div>
+
+<form action="/addcreak?id={{id}}" method="post">
+    <div id="center-view" class="center-block col-md-6 col-sm-8 item">
+        <div class="exercise-tables-background center-block">
+            <h1 id="font-title"><input class="form-control" onClick="javascript:A();" type="text" style="display: block;"  id="crunch" name="crunch" placeholder="What are you thinking about?" /></h1>
+            <div id="br" style="display: none;">
+                <textarea name="realCrunch" cols="89" rows="5" id="realCrunch"></textarea>
+                <button class="btn btn-default action-button" type="submit">Creak</button>
+            </div>
+            <br>
+
+            {% for creak in user_creaks %}
+            <div class="exercise-tables-background center-block" style="background-color: powderblue">
+                <p style="text-align: left; color: black;font-size: 14px">{{name}}&nbsp;{{surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
+                <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</form>
+{% endblock %}

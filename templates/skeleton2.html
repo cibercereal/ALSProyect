@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- Font Awesome Icons -->
+	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="/css/styles.css"/><title>Login on Crunch</title>
+</head>
+<body>
+	<div>
+		<nav class="navbar navbar-default navigation-clean-search">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/welcome?id={{id}}"><i class="fas fa-home"></i>&nbsp;Start</a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Desplegar navegación</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li role="presentation"><a href=""><i class="fas fa-bolt"></i>&nbsp;Moments</a></li>
+					<li role="presentation"><a href=""><i class="fas fa-bell"></i>&nbsp;Notifications</a></li>
+					<li role="presentation"><a href=""><i class="fas fa-envelope"></i>&nbsp;Messages</a></li>
+				</ul>
+				<a class="navbar-center"><img class="login-icon" src="/src/mini_icon.png" alt="Crunch"/></a>
+				<a class="btn btn-default navbar-btn navbar-rigth action-button"
+					role="button" href="">Logout</a>
+			</div>
+
+		</nav>
+	</div>
+
+    <main>
+        <div id="dvContents">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    </main>
+
+</body>
+</html>

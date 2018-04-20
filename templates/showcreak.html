@@ -1,0 +1,31 @@
+{% extends "skeleton2.html" %}
+{% block content %}
+<form action="" method="post">
+    <div id="center-view" class="center-block col-md-6 col-sm-8 item">
+        <div class="exercise-tables-background center-block">
+        <h4>@{{username}}</h4><br>
+            <div class="exercise-tables-background center-block">
+                <div class="col-md-4 col-sm-2 item">
+                    <a href="/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
+                </div>
+                <div class="col-md-4 col-sm-2 item">
+                    <a href="">Follow</a><br>{{follow}}
+                </div>
+                <div class="col-md-4 col-sm-2 item">
+                    <a href="">Followers</a><br>{{followers}}
+                </div><br>
+            </div>
+
+            <br>
+
+            {% for creak in user_creaks %}
+            <div class="exercise-tables-background center-block" style="background-color: powderblue">
+                <p style="text-align: left; color: black;font-size: 14px">{{name}}&nbsp;{{surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
+                <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
+                <p style="text-align: right"><a href="#"><i class="far fa-trash-alt"></i></a></p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,5 +1,6 @@
 import webapp2
 import os
+import random
 import time
 import google.appengine.ext.ndb as ndb
 from webapp2_extras import jinja2
@@ -24,6 +25,9 @@ class RegisterHandler(webapp2.RequestHandler):
         birthdate = self.request.get("birthdate", "").strip()
         password = self.request.get("passwd", "").strip()
         rpassword = self.request.get("rpasswd", "").strip()
+        creaks = 0
+        follow = 0
+        followers = 0
 
         if len(name) == 0 or len(surname) == 0 or len(username) == 0 or \
                 len(email) == 0 or len(birthdate) == 0 or len(password) == 0\
@@ -39,7 +43,7 @@ class RegisterHandler(webapp2.RequestHandler):
             return
 
         user = Register(username=username, name=name, surname=surname,
-                        email=email, birthdate=birthdate, password=password)
+                        email=email, birthdate=birthdate, password=password, creaks=creaks, follow=follow, followers=followers)
         userToPut = Register.query(ndb.OR(Register.username == username, Register.email == email))
 
         if userToPut.count() > 0:

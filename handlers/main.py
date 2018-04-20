@@ -17,7 +17,14 @@
 import webapp2
 from webapp2_extras import jinja2
 from model.register import Register
+
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.ext import webapp
+from appSession import Session
+from google.appengine.api import users
+
 import time
+from google.appengine.api import users
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -44,7 +51,8 @@ class MainHandler(webapp2.RequestHandler):
         user = Register.query(Register.username == username, Register.password == password)
 
         if user.count() == 1:
-            self.redirect("/welcome")
+            user_id = user.fetch(1)[0].key.urlsafe()
+            self.redirect("/welcome?id="+user_id)
             return
         else:
             values = {

@@ -186,6 +186,10 @@ table td:hover {
 	background: #98aefa !important;
 }
 
+thead > tr > th{
+	background: #66d7d7 !important;
+}
+
 .ubica-right {
 	float: right;
 	margin-right: -4%;
@@ -311,6 +315,11 @@ table td:hover {
 	background: none;
 }
 
+.navbar-center{
+   	position: absolute;
+	left: 50%;
+}
+
 .navigation-clean-search .navbar-toggle {
 	border-color: #ddd;
 }
@@ -328,10 +337,6 @@ table td:hover {
 .navigation-clean-search .navbar-default .navbar-nav>li>a:hover {
 	/*color: #37434d !important;*/
 	background-color: transparent;
-}
-
-.navigation-clean-search.navbar-default .navbar-nav>li>a {
-	/*color: white;*/
 }
 
 .control-label {

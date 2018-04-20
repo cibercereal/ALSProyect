@@ -27,6 +27,15 @@ handlers:
 - url: /register
   script: handlers.register.app
 
+- url: /welcome
+  script: handlers.welcome.app
+
+- url: /addcreak
+  script: handlers.addcreak.app
+
+- url: /showcreak
+  script: handlers.showcreak.app
+
 - url: .*
   script: handlers.main.app
 
