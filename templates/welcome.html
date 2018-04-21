@@ -1,33 +1,84 @@
 {% extends "skeleton2.html" %}
 {% block content %}
-<script>function A()
-{
-  var text = document.getElementById("crunch");
-  text.style.display = "none";
-  var textarea = document.getElementById("br");
-  textarea.style.display = "block";
+<script>
+    function validate()
+    {
+        var toret = true;
 
-}
-function B()
-{
-  var text = document.getElementById("crunch");
-  text.style.display = "block";
-  var textarea = document.getElementById("br");
-  textarea.style.display = "none";
-}</script>
+            var search = document.getElementById("search");
+
+			hideError();
+
+            if(search.value.trim().length === 0){
+                showError("User to search can not be null.");
+                toret = false;
+            }
+
+			return toret;
+    }
+    function hideError()
+    {
+	    document.getElementById("dvError").style.display = "none";
+	}
+    function showError(msg)
+    {
+        var dvError = document.getElementById("dvError");
+        var pError = document.createElement( "p" );
+
+        dvError.innerHTML = "";
+        dvError.appendChild( pError );
+        pError.appendChild( document.createTextNode( msg ) );
+        dvError.style.display = "block";
+    }
+    function A()
+    {
+      var text = document.getElementById("crunch");
+      text.style.display = "none";
+      var textarea = document.getElementById("br");
+      textarea.style.display = "block";
+
+    }
+    function B()
+    {
+      var text = document.getElementById("crunch");
+      text.style.display = "block";
+      var textarea = document.getElementById("br");
+      textarea.style.display = "none";
+    }
+</script>
+{% if error_login %}
+		<script>
+			alert("{{error_login}}");
+        </script>
+{% endif %}
 <div class="center-block col-md-3 col-sm-2 item">
     <div class="exercise-tables-background center-block">
-        <h4>{{name}}&nbsp;{{surname}}</h4><br>@{{username}}
+        <h4><a href="/profile?id={{id}}">{{name}}&nbsp;{{surname}}</a></h4><br>@{{username}}
         <div class="exercise-tables-background center-block">
             <div class="col-md-4 col-sm-2 item">
                 <a href="/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
             </div>
             <div class="col-md-4 col-sm-2 item">
-                <a href="">Follow</a><br>{{follow}}
+                <a href="/showfollows?id={{id}}">Follow</a><br>{{follow}}
             </div>
             <div class="col-md-4 col-sm-2 item">
                 <a href="">Followers</a><br>{{followers}}
             </div><br>
+        </div>
+    </div>
+
+    <div class="exercise-tables-background center-block">
+        <h5>Search People</h5><br>
+
+        <form class="form-inline" action="/showusers?id={{id}}" onsubmit="javascript: return validate()" method="get">
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" id="search" name="search" placeholder="Enter a name">
+          </div>
+            <input class="form-control" id="id" name="id" type="hidden" value="{{id}}">
+            <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="form-group" id="dvError" style="color:darkblue;background-color:red;display:none">
+
         </div>
     </div>
 
@@ -67,7 +118,7 @@ function B()
 
             {% for creak in user_creaks %}
             <div class="exercise-tables-background center-block" style="background-color: powderblue">
-                <p style="text-align: left; color: black;font-size: 14px">{{name}}&nbsp;{{surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
+                <p style="text-align: left; color: black;font-size: 14px">{{creak.name}}&nbsp;{{creak.surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
                 <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
             </div>
             {% endfor %}

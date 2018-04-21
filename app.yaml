@@ -36,6 +36,15 @@ handlers:
 - url: /showcreak
   script: handlers.showcreak.app
 
+- url: /showusers
+  script: handlers.showusers.app
+
+- url: /profile
+  script: handlers.profile.app
+
+- url: /followuser
+  script: handlers.followuser.app
+
 - url: .*
   script: handlers.main.app
 

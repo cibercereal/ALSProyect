@@ -5,3 +5,5 @@ class Creak(ndb.Model):
     creak = ndb.StringProperty()
     time = ndb.DateTimeProperty(auto_now_add = True)
     user = ndb.StringProperty()
+    name = ndb.StringProperty()
+    surname = ndb.StringProperty()

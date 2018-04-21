@@ -14,9 +14,9 @@ indexes:
   properties:
   - name: user
   - name: time
-    direction: desc
 
 - kind: Creak
   properties:
   - name: user
   - name: time
+    direction: desc

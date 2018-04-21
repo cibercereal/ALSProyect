@@ -17,7 +17,7 @@ class AddCreakHandler(webapp2.RequestHandler):
             creak = self.request.get("realCrunch", "").strip()
 
             if len(creak) != 0:
-                cr = Creak(creak=creak,user=user.username)
+                cr = Creak(creak=creak,user=user.username,name=user.name,surname=user.surname)
                 cr.put()
                 time.sleep(1)
                 #modificar el numero de creaks escritos

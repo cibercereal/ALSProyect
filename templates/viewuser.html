@@ -1,0 +1,52 @@
+{% extends "skeleton2.html" %}
+{% block content %}
+<div class="center-block col-md-3 col-sm-2 item">
+    <div class="exercise-tables-background center-block">
+        <h4><a href="/profile?id={{id}}">{{name}}&nbsp;{{surname}}</a></h4><br>@{{username}}
+        <div class="exercise-tables-background center-block">
+            <div class="col-md-4 col-sm-2 item">
+                <a href="/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
+            </div>
+            <div class="col-md-4 col-sm-2 item">
+                <a href="">Follow</a><br>{{follow}}
+            </div>
+            <div class="col-md-4 col-sm-2 item">
+                <a href="">Followers</a><br>{{followers}}
+            </div><br>
+        </div>
+    </div>
+</div>
+
+<div id="center-view" class="center-block col-md-6 col-sm-8 item">
+        <div class="exercise-tables-background center-block">
+        <h4>@{{usernameSearch}}</h4>
+            {% if followed %}
+                <a class="btn btn-default navbar-btn navbar-rigth action-button" role="button" href="/followuser?id={{id}}&user={{usernameSearch}}">Unfollow</a><br>
+            {% else %}
+                <a class="btn btn-default navbar-btn navbar-rigth action-button" role="button" href="/followuser?id={{id}}&user={{usernameSearch}}">Follow</a><br>
+            {% endif %}
+            <div class="exercise-tables-background center-block">
+                <div class="col-md-4 col-sm-2 item">
+                    <a>Creaks</a><br>{{creaksSearch}}
+                </div>
+                <div class="col-md-4 col-sm-2 item">
+                    <a>Follow</a><br>{{followSearch}}
+                </div>
+                <div class="col-md-4 col-sm-2 item">
+                    <a>Followers</a><br>{{followersSearch}}
+                </div><br>
+            </div>
+
+            <br>
+
+            {% for creak in user_creaks %}
+            <div class="exercise-tables-background center-block" style="background-color: powderblue">
+                <p style="text-align: left; color: black;font-size: 14px">{{nameSearch}}&nbsp;{{surnameSearch}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{usernameSearch}}</i></p>
+                <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
+                <p style="text-align: center-right"><a href="#"><i class="fas fa-retweet"></i></a>&nbsp;&nbsp;<a href="#"><i class="far fa-heart"></i></a></p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
