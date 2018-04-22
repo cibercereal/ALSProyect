@@ -5,6 +5,7 @@ import google.appengine.ext.ndb as ndb
 from model.creak import Creak
 from model.follow import Follow
 from model.register import Register
+from model.like import Like
 
 class Welcome(webapp2.RequestHandler):
     def get(self):
@@ -18,6 +19,11 @@ class Welcome(webapp2.RequestHandler):
                     creaks.append(i.usernameToFollow)
 
             user_creaks = Creak.query(ndb.OR(Creak.user == user.username, Creak.user.IN(creaks))).order(-Creak.time)
+            likes = []
+            like = Like.query(Like.iduser == user.username)
+            for j in like:
+                likes.append(j.idcreak)
+
             values = {
                 "username": user.username,
                 "name": user.name,
@@ -26,10 +32,16 @@ class Welcome(webapp2.RequestHandler):
                 "follow": user.follow,
                 "followers": user.followers,
                 "id": id,
-                "user_creaks": user_creaks
+                "user_creaks": user_creaks,
+                "like": likes
             }
         else:
             user_creaks = Creak.query(Creak.user == user.username).order(-Creak.time)
+            likes = []
+            like = Like.query(Like.iduser == user.username)
+            for j in like:
+                likes.append(j.idcreak)
+
             values = {
                 "username": user.username,
                 "name": user.name,
@@ -38,7 +50,8 @@ class Welcome(webapp2.RequestHandler):
                 "follow": user.follow,
                 "followers": user.followers,
                 "id": id,
-                "user_creaks": user_creaks
+                "user_creaks": user_creaks,
+                "like": likes
             }
         jinja = jinja2.get_jinja2(app=self.app)
         self.response.write(jinja.render_template("welcome.html", **values))

@@ -62,7 +62,7 @@
                 <a href="/showfollows?id={{id}}">Follow</a><br>{{follow}}
             </div>
             <div class="col-md-4 col-sm-2 item">
-                <a href="">Followers</a><br>{{followers}}
+                <a href="/showfollowers?id={{id}}">Followers</a><br>{{followers}}
             </div><br>
         </div>
     </div>
@@ -82,7 +82,7 @@
         </div>
     </div>
 
-	<div class="exercise-tables-background center-block">
+	<!--<div class="exercise-tables-background center-block">
         <table id="table-margin" class="table">
 				<thead>
 				<tr>
@@ -90,7 +90,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!--<?php foreach ($users as $user): ?>-->
+
                 <tr>
                     <td class=""><a href=""><span class="">#Hello world</span></a></td>
                 </tr>
@@ -100,10 +100,10 @@
                 <tr>
                     <td class=""><a href=""><span class="">#BD</span></a></td>
                 </tr>
-				<!--<?php endforeach; ?>-->
+
 			</tbody>
         </table>
-    </div>
+    </div>-->
 </div>
 
 <form action="/addcreak?id={{id}}" method="post">
@@ -117,10 +117,23 @@
             <br>
 
             {% for creak in user_creaks %}
-            <div class="exercise-tables-background center-block" style="background-color: powderblue">
-                <p style="text-align: left; color: black;font-size: 14px">{{creak.name}}&nbsp;{{creak.surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
-                <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
-            </div>
+                <div class="exercise-tables-background center-block" style="background-color: powderblue">
+                    <p style="text-align: left; color: black;font-size: 14px">{{creak.name}}&nbsp;{{creak.surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
+                    <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
+                    <p style="text-align: center-right">
+                        {% if creak.user != username %}
+                            <a href="/recreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-retweet" style="color: green;"></i></a>&nbsp;&nbsp;
+                        {% endif %}
+                        {% if creak.key.urlsafe() in like %}
+                            <a href="/deletelikecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-heart" style="color: red"></i></a>
+                        {% else %}
+                            <a href="/likecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="far fa-heart" style="color: red"></i></a>
+                        {% endif %}
+                        {% if creak.user == username %}
+                            &nbsp;<a href="/deletecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-trash-alt" style="color: indianred;"></i></a></p>
+                        {% endif %}
+                    </p>
+                </div>
             {% endfor %}
         </div>
     </div>

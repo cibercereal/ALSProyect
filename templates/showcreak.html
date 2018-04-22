@@ -22,7 +22,8 @@
             <div class="exercise-tables-background center-block" style="background-color: powderblue">
                 <p style="text-align: left; color: black;font-size: 14px">{{name}}&nbsp;{{surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
                 <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
-                <p style="text-align: right"><a href="#"><i class="far fa-trash-alt"></i></a></p>
+                <p style="text-align: center; color: black; font-size: 16px"><a href="/deletecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-trash-alt" style="color: indianred;"></i></a></p>
+
             </div>
             {% endfor %}
         </div>

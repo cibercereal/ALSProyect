@@ -45,6 +45,24 @@ handlers:
 - url: /followuser
   script: handlers.followuser.app
 
+- url: /showfollows
+  script: handlers.showfollows.app
+
+- url: /showfollowers
+  script: handlers.showfollowers.app
+
+- url: /deletecreak
+  script: handlers.deletecreak.app
+
+- url: /recreak
+  script: handlers.recreak.app
+
+- url: /likecreak
+  script: handlers.likecreak.app
+
+- url: /deletelikecreak
+  script: handlers.deletelikecreak.app
+
 - url: .*
   script: handlers.main.app
 
