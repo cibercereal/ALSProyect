@@ -1,8 +1,7 @@
 {% extends "skeleton2.html" %}
 {% block content %}
-
 <div>
-	<h1 id="bigger-size" class="stroke">Creaks you posted</h1>
+	<h1 id="bigger-size" class="stroke">Creaks you like</h1>
 	<br>
 </div>
 
@@ -24,11 +23,11 @@
 
             <br>
 
-            {% for creak in user_creaks %}
+            {% for creak in liked_creaks %}
             <div class="exercise-tables-background center-block" style="background-color: powderblue">
                 <p style="text-align: left; color: black;font-size: 14px">{{name}}&nbsp;{{surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
                 <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
-                <p style="text-align: center; color: black; font-size: 16px"><a href="/deletecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-trash-alt" style="color: indianred;"></i></a></p>
+                <p style="text-align: center; color: black; font-size: 16px"><a href="/deletelikecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-heart" style="color: red"></i></a></p>
 
             </div>
             {% endfor %}

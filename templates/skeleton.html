@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
      <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -12,8 +13,15 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="/css/styles.css"/><title>Login on Crunch</title>
+	<script>
+		function noback(){
+		   window.location.hash="no-back-button";
+		   window.location.hash="Again-No-back-button"
+		   window.onhashchange=function(){window.location.hash="no-back-button";}
+		}
+	</script>
 </head>
-<body>
+<body onload="noback();">
 	<div>
 		<nav class="navbar navbar-default navigation-clean-search">
 			<div class="navbar-header">
@@ -28,7 +36,7 @@
 
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li role="presentation"><a href="">Contact</a></li>
+					<li role="presentation"><a href=""></a></li>
 					<li role="presentation"><a>Language: English</a></li>
 				</ul>
 				<a class="btn btn-default navbar-btn navbar-rigth action-button"

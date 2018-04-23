@@ -63,6 +63,9 @@ handlers:
 - url: /deletelikecreak
   script: handlers.deletelikecreak.app
 
+- url: /showlikes
+  script: handlers.showlikes.app
+
 - url: .*
   script: handlers.main.app
 

@@ -5,6 +5,7 @@ from model.creak import Creak
 from model.follow import Follow
 import time
 import google.appengine.ext.ndb as ndb
+from model.like import Like
 
 class ShowUsers(webapp2.RequestHandler):
     def get(self):
@@ -42,6 +43,10 @@ class ShowUsers(webapp2.RequestHandler):
             user_creaks = Creak.query(Creak.user == users.username).order(-Creak.time)
 
             follow = Follow.query(ndb.AND(Follow.username == user.username, Follow.usernameToFollow == users.username))
+            likes = []
+            like = Like.query(Like.iduser == user.username)
+            for j in like:
+                likes.append(j.idcreak)
 
             if follow.count() != 0:
                 values = {
@@ -59,7 +64,8 @@ class ShowUsers(webapp2.RequestHandler):
                     "followSearch": users.follow,
                     "followersSearch": users.followers,
                     "user_creaks": user_creaks,
-                    "followed": "followed"
+                    "followed": "followed",
+                    "like": likes
                 }
                 jinja = jinja2.get_jinja2(app=self.app)
                 self.response.write(jinja.render_template("viewuser.html", **values))
@@ -93,6 +99,7 @@ class ShowUsers(webapp2.RequestHandler):
         if user:
             try:
                 edit = self.request.GET["edit"]
+                
                 values = {
                     "username": user.username,
                     "name": user.name,
