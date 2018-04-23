@@ -6,13 +6,14 @@ from model.follow import Follow
 import time
 import google.appengine.ext.ndb as ndb
 from model.like import Like
+from model.notification import Notification
 
 class ShowUsers(webapp2.RequestHandler):
     def get(self):
         search = self.request.get("search", "").strip()
         id = self.request.GET["id"]
         user = ndb.Key(urlsafe=id).get()
-
+        noReadMsg = Notification.query(Notification.user == user.username, Notification.read == 0)
         if len(search) == 0:
             self.response.write("User to search can not be null.")
             return
@@ -30,7 +31,8 @@ class ShowUsers(webapp2.RequestHandler):
                 "follow": user.follow,
                 "followers": user.followers,
                 "id": id,
-                "user_creaks": user_creaks
+                "user_creaks": user_creaks,
+                "noReadMsg": noReadMsg
             }
             jinja = jinja2.get_jinja2(app=self.app)
             self.response.write(jinja.render_template("welcome.html", **values))
@@ -65,7 +67,8 @@ class ShowUsers(webapp2.RequestHandler):
                     "followersSearch": users.followers,
                     "user_creaks": user_creaks,
                     "followed": "followed",
-                    "like": likes
+                    "like": likes,
+                    "noReadMsg": noReadMsg
                 }
                 jinja = jinja2.get_jinja2(app=self.app)
                 self.response.write(jinja.render_template("viewuser.html", **values))
@@ -86,7 +89,8 @@ class ShowUsers(webapp2.RequestHandler):
                     "creaksSearch": users.creaks,
                     "followSearch": users.follow,
                     "followersSearch": users.followers,
-                    "user_creaks": user_creaks
+                    "user_creaks": user_creaks,
+                    "noReadMsg": noReadMsg
                 }
                 jinja = jinja2.get_jinja2(app=self.app)
                 self.response.write(jinja.render_template("viewuser.html", **values))
@@ -97,15 +101,21 @@ class ShowUsers(webapp2.RequestHandler):
         user = ndb.Key(urlsafe=id).get()
 
         if user:
+            noReadMsg = Notification.query(Notification.user == user.username, Notification.read == 0)
+            for i in noReadMsg:
+                if i.read == 0:
+                    noReadMsg = 0
+                break
             try:
                 edit = self.request.GET["edit"]
-                
+
                 values = {
                     "username": user.username,
                     "name": user.name,
                     "surname": user.surname,
                     "email": user.email,
-                    "id": id
+                    "id": id,
+                    "noReadMsg": noReadMsg
                 }
                 jinja = jinja2.get_jinja2(app=self.app)
                 self.response.write(jinja.render_template("edituser.html", **values))

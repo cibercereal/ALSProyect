@@ -6,12 +6,18 @@ from model.follow import Follow
 import time
 from model.like import Like
 import google.appengine.ext.ndb as ndb
+from model.notification import Notification
 
 class ShowLikes(webapp2.RequestHandler):
     def get(self):
         try:
             id = self.request.GET["id"]
             user = ndb.Key(urlsafe=id).get()
+            noReadMsg = Notification.query(Notification.user == user.username, Notification.read == 0)
+            for i in noReadMsg:
+                if i.read == 0:
+                    noReadMsg = 0
+                break
 
             likes = Like.query(Like.iduser == user.username)
             var = []
@@ -27,7 +33,8 @@ class ShowLikes(webapp2.RequestHandler):
                 "follow": user.follow,
                 "followers": user.followers,
                 "id": id,
-                "liked_creaks": var
+                "liked_creaks": var,
+                "noReadMsg": noReadMsg
             }
             jinja = jinja2.get_jinja2(app=self.app)
             self.response.write(jinja.render_template("showlikes.html", **values))

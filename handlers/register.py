@@ -27,7 +27,7 @@ class RegisterHandler(webapp2.RequestHandler):
         rpassword = self.request.get("rpasswd", "").strip()
         creaks = 0
         follow = 0
-        followers = 0
+
 
         if len(name) == 0 or len(surname) == 0 or len(username) == 0 or \
                 len(email) == 0 or len(birthdate) == 0 or len(password) == 0\
@@ -43,7 +43,7 @@ class RegisterHandler(webapp2.RequestHandler):
             return
 
         user = Register(username=username, name=name, surname=surname,
-                        email=email, birthdate=birthdate, password=password, creaks=creaks, follow=follow, followers=followers)
+                        email=email, birthdate=birthdate, password=password, id=id)
         userToPut = Register.query(ndb.OR(Register.username == username, Register.email == email))
 
         if userToPut.count() > 0:

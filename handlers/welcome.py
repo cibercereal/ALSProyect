@@ -6,12 +6,18 @@ from model.creak import Creak
 from model.follow import Follow
 from model.register import Register
 from model.like import Like
+from model.notification import Notification
 
 class Welcome(webapp2.RequestHandler):
     def get(self):
         id = self.request.GET["id"]
         user = ndb.Key(urlsafe=id).get()
         follows = Follow.query(Follow.username == user.username)
+        noReadMsg = Notification.query(Notification.user == user.username, Notification.read == 0)
+        for i in noReadMsg:
+            if i.read == 0:
+                noReadMsg = 0
+            break
         creaks = []
         if follows.count() != 0:
             for i in follows:
@@ -33,7 +39,8 @@ class Welcome(webapp2.RequestHandler):
                 "followers": user.followers,
                 "id": id,
                 "user_creaks": user_creaks,
-                "like": likes
+                "like": likes,
+                "noReadMsg": noReadMsg
             }
         else:
             user_creaks = Creak.query(Creak.user == user.username).order(-Creak.time)
@@ -51,7 +58,8 @@ class Welcome(webapp2.RequestHandler):
                 "followers": user.followers,
                 "id": id,
                 "user_creaks": user_creaks,
-                "like": likes
+                "like": likes,
+                "noReadMsg": noReadMsg
             }
         jinja = jinja2.get_jinja2(app=self.app)
         self.response.write(jinja.render_template("welcome.html", **values))
