@@ -5,40 +5,40 @@ from model.creak import Creak
 from model.follow import Follow
 import time
 from model.like import Like
+from model.notification import Notification
 import google.appengine.ext.ndb as ndb
 
-class ShowLikes(webapp2.RequestHandler):
+class ShowNotifications(webapp2.RequestHandler):
     def get(self):
         try:
             id = self.request.GET["id"]
             user = ndb.Key(urlsafe=id).get()
 
-            likes = Like.query(Like.iduser == user.username)
-            var = []
-            for i in likes:
-                var.append(ndb.Key(urlsafe=i.idcreak).get())
-                print(var)
-            #liked_creaks = Creak.query(Creak.key.urlsafe().IN(var)).order(-Creak.time)
+            noReadMsg = Notification.query(Notification.user == user.username, Notification.read == 0)
+            for i in noReadMsg:
+                i.read = 1
+                i.put()
+                time.sleep(0.5)
+
+            notifications = Notification.query(Notification.user == user.username).order(-Notification.date)
+
             values = {
                 "username": user.username,
                 "name": user.name,
                 "surname": user.surname,
-                "creaks": user.creaks,
-                "follow": user.follow,
-                "followers": user.followers,
-                "id": id,
-                "liked_creaks": var
+                "notifications": notifications,
+                "id": id
             }
             jinja = jinja2.get_jinja2(app=self.app)
-            self.response.write(jinja.render_template("showlikes.html", **values))
+            self.response.write(jinja.render_template("shownotifications.html", **values))
             return
         except:
             self.response.write("An error occurred.")
-        pass
+            return
 
     def post(self):
         pass
 
 app = webapp2.WSGIApplication([
-    ('/showlikes', ShowLikes)
-])
+    ('/shownotifications', ShowNotifications)
+], debug=True)

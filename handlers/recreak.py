@@ -5,6 +5,7 @@ import time
 from model.creak import Creak
 from model.register import Register
 from webapp2_extras import jinja2
+from model.notification import Notification
 
 class Recreak(webapp2.RequestHandler):
     def get(self):
@@ -21,6 +22,10 @@ class Recreak(webapp2.RequestHandler):
                 p = "RC from "+creak.name+" "+creak.surname+" @"+creak.user+" ==> \r\n  "
                 user.creaks = user.creaks + 1
                 user.put()
+                if user.username != creak.user:
+                    notification = Notification(user=creak.user,msg="@"+user.username+" recreak your creak: '"+creak.creak+"'",read=0)
+                    notification.put()
+                    time.sleep(1)
 
                 cr = Creak(creak=p+creak.creak, user=user.username, name=user.name, surname=user.surname)
                 cr.put()

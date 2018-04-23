@@ -5,6 +5,7 @@ from model.creak import Creak
 from model.follow import Follow
 import time
 from model.like import Like
+from model.notification import Notification
 import google.appengine.ext.ndb as ndb
 
 class LikeCreak(webapp2.RequestHandler):
@@ -23,6 +24,10 @@ class LikeCreak(webapp2.RequestHandler):
                 like = Like(idcreak=creak.key.urlsafe(), iduser=user.username)
                 like.put()
                 time.sleep(1)
+                if user.username != creak.user:
+                    notification = Notification(user=creak.user,msg="@"+user.username+" liked your creak: '"+creak.creak+"'",read=0)
+                    notification.put()
+                    time.sleep(1)
                 self.redirect("/welcome?id="+id)
             else:
                 self.response.write("An error occurred.")

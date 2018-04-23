@@ -1,0 +1,21 @@
+{% extends "skeleton2.html" %}
+{% block content %}
+<div>
+	<h1 id="bigger-size" class="stroke">Notifications</h1>
+	<br>
+</div>
+
+<div id="center-view" class="center-block col-md-6 col-sm-8 item">
+        <div class="exercise-tables-background center-block">
+             {% for notification in notifications %}
+                <div class="exercise-tables-background center-block" style="background-color: powderblue">
+                     <p style="text-align: left; color: black;font-size: 14px">Date:&nbsp;{{notification.date}}</p>
+                    <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{notification.msg}}</p>
+                    <p style="text-align: center-right">
+                            &nbsp;<a href="/deletenotification?id={{id}}&idnotification={{notification.key.urlsafe()}}"><i class="fas fa-trash-alt" style="color: indianred;"></i></a></p>
+                    </p>
+                </div>
+             {% endfor %}
+        </div>
+</div>
+{% endblock %}

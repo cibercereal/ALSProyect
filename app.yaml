@@ -66,6 +66,12 @@ handlers:
 - url: /showlikes
   script: handlers.showlikes.app
 
+- url: /shownotifications
+  script: handlers.shownotifications.app
+
+- url: /deletenotification
+  script: handlers.deletenotification.app
+
 - url: .*
   script: handlers.main.app
 
