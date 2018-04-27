@@ -12,7 +12,7 @@
                      <p style="text-align: left; color: black;font-size: 14px">Date:&nbsp;{{notification.date}}</p>
                     <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{notification.msg}}</p>
                     <p style="text-align: center-right">
-                            &nbsp;<a href="/deletenotification?id={{id}}&idnotification={{notification.key.urlsafe()}}"><i class="fas fa-trash-alt" style="color: indianred;"></i></a></p>
+                            &nbsp;<a href="/notification/deletenotification?id={{id}}&idnotification={{notification.key.urlsafe()}}"><i class="fas fa-trash-alt" style="color: indianred;"></i></a></p>
                     </p>
                 </div>
              {% endfor %}

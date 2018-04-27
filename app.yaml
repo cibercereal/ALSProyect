@@ -1,4 +1,4 @@
-application: cutre-libro-visitas
+application: alsproyect
 version: 1
 runtime: python27
 api_version: 1
@@ -24,53 +24,53 @@ handlers:
   static_dir: css
   application_readable: true
 
-- url: /register
-  script: handlers.register.app
+- url: /user/register
+  script: handlers.user.register.app
 
 - url: /welcome
   script: handlers.welcome.app
 
-- url: /addcreak
-  script: handlers.addcreak.app
+- url: /creak/addcreak
+  script: handlers.creak.addcreak.app
 
-- url: /showcreak
-  script: handlers.showcreak.app
+- url: /creak/showcreak
+  script: handlers.creak.showcreak.app
 
-- url: /showusers
-  script: handlers.showusers.app
+- url: /user/showusers
+  script: handlers.user.showusers.app
 
-- url: /profile
-  script: handlers.profile.app
+- url: /user/profile
+  script: handlers.user.profile.app
 
-- url: /followuser
-  script: handlers.followuser.app
+- url: /followandfollowers/followuser
+  script: handlers.followandfollowers.followuser.app
 
-- url: /showfollows
-  script: handlers.showfollows.app
+- url: /followandfollowers/showfollows
+  script: handlers.followandfollowers.showfollows.app
 
-- url: /showfollowers
-  script: handlers.showfollowers.app
+- url: /followandfollowers/showfollowers
+  script: handlers.followandfollowers.showfollowers.app
 
-- url: /deletecreak
-  script: handlers.deletecreak.app
+- url: /creak/deletecreak
+  script: handlers.creak.deletecreak.app
 
-- url: /recreak
-  script: handlers.recreak.app
+- url: /creak/recreak
+  script: handlers.creak.recreak.app
 
-- url: /likecreak
-  script: handlers.likecreak.app
+- url: /creak/likecreak
+  script: handlers.creak.likecreak.app
 
-- url: /deletelikecreak
-  script: handlers.deletelikecreak.app
+- url: /creak/deletelikecreak
+  script: handlers.creak.deletelikecreak.app
 
-- url: /showlikes
-  script: handlers.showlikes.app
+- url: /creak/showlikes
+  script: handlers.creak.showlikes.app
 
-- url: /shownotifications
-  script: handlers.shownotifications.app
+- url: /notification/shownotifications
+  script: handlers.notification.shownotifications.app
 
-- url: /deletenotification
-  script: handlers.deletenotification.app
+- url: /notification/deletenotification
+  script: handlers.notification.deletenotification.app
 
 - url: .*
   script: handlers.main.app

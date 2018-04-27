@@ -2,10 +2,10 @@
 {% block content %}
 <div class="center-block col-md-3 col-sm-2 item">
     <div class="exercise-tables-background center-block">
-        <h4><a href="/profile?id={{id}}">{{name}}&nbsp;{{surname}}</a></h4><br>@{{username}}
+        <h4><a href="/user/profile?id={{id}}">{{name}}&nbsp;{{surname}}</a></h4><br>@{{username}}
         <div class="exercise-tables-background center-block">
             <div class="col-md-4 col-sm-2 item">
-                <a href="/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
+                <a href="/creak/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
             </div>
             <div class="col-md-4 col-sm-2 item">
                 <a href="">Follow</a><br>{{follow}}
@@ -21,9 +21,9 @@
         <div class="exercise-tables-background center-block">
         <h4>@{{usernameSearch}}</h4>
             {% if followed %}
-                <a class="btn btn-default navbar-btn navbar-rigth action-button" role="button" href="/followuser?id={{id}}&user={{usernameSearch}}">Unfollow</a><br>
+                <a class="btn btn-default navbar-btn navbar-rigth action-button" role="button" href="/followandfollowers/followuser?id={{id}}&user={{usernameSearch}}">Unfollow</a><br>
             {% else %}
-                <a class="btn btn-default navbar-btn navbar-rigth action-button" role="button" href="/followuser?id={{id}}&user={{usernameSearch}}">Follow</a><br>
+                <a class="btn btn-default navbar-btn navbar-rigth action-button" role="button" href="/followandfollowers/followuser?id={{id}}&user={{usernameSearch}}">Follow</a><br>
             {% endif %}
             <div class="exercise-tables-background center-block">
                 <div class="col-md-4 col-sm-2 item">
@@ -42,12 +42,12 @@
             {% for creak in user_creaks %}
             <div class="exercise-tables-background center-block" style="background-color: powderblue">
                 <p style="text-align: left; color: black;font-size: 14px">{{nameSearch}}&nbsp;{{surnameSearch}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{usernameSearch}}</i></p>
-                <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
-                <p style="text-align: center-right"><a href="/recreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-retweet" style="color: green;"></i></a>&nbsp;&nbsp;
+                <div style="text-align: left; color: black; font-size: 16px; white-space: pre; padding-left: 15px">{{creak.creak}}</div>
+                <p style="text-align: center-right"><a href="/creak/recreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-retweet" style="color: green;"></i></a>&nbsp;&nbsp;
                     {% if creak.key.urlsafe() in like %}
-                            <a href="/deletelikecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-heart" style="color: red"></i></a>
+                            <a href="/creak/deletelikecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-heart" style="color: red"></i></a>
                         {% else %}
-                            <a href="/likecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="far fa-heart" style="color: red"></i></a>
+                            <a href="/creak/likecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="far fa-heart" style="color: red"></i></a>
                         {% endif %}
                 </p>
             </div>

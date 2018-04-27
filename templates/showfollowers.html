@@ -12,7 +12,7 @@
                <br>
                 {% for f in follows %}
                     <div class="form-group">
-                        <label class="control-label text-size text-muted col-sm-4" style="color: black"><a href="/showusers?search={{f.username}}&id={{id}}"><i class="fas fa-eye"></i></a></label>
+                        <label class="control-label text-size text-muted col-sm-4" style="color: black"><a href="/user/showusers?search={{f.username}}&id={{id}}"><i class="fas fa-eye"></i></a></label>
                         <div class="col-lg-6">
                             <label class="control-label text-size text-muted col-sm-4" style="color: black">@{{f.username}}</label>
                         </div>

@@ -8,7 +8,7 @@
 
         <div id="edit-view" class="center-block col-xs-6 col-lg-4">
             <br>
-            <form action="/showusers?id={{id}}&edit=edit" method="POST" class="center-block form-horizontal">
+            <form action="/user/showusers?id={{id}}&edit=edit" method="POST" class="center-block form-horizontal">
                <br>
                 <div class="form-group">
                     <label class="control-label text-size text-muted col-sm-4" style="color: black">Name:</label>
@@ -31,13 +31,13 @@
 
                 <br><br>
                 <div class="col-md-4 col-sm-2 item">
-                    <a href="/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
+                    <a href="/creak/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
                 </div>
                 <div class="col-md-4 col-sm-2 item">
-                    <a href="/showfollows?id={{id}}">Follow</a><br>{{follow}}
+                    <a href="/followandfollowers/showfollows?id={{id}}">Follow</a><br>{{follow}}
                 </div>
                 <div class="col-md-4 col-sm-2 item">
-                    <a href="/showfollowers?id={{id}}">Followers</a><br>{{followers}}
+                    <a href="/followandfollowers/showfollowers?id={{id}}">Followers</a><br>{{followers}}
                 </div><br><br><br>
 
                 <div class="form-group">

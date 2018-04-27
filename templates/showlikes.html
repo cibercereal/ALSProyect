@@ -11,13 +11,13 @@
         <h4>@{{username}}</h4><br>
             <div class="exercise-tables-background center-block">
                 <div class="col-md-4 col-sm-2 item">
-                    <a href="/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
+                    <a href="/creak/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
                 </div>
                 <div class="col-md-4 col-sm-2 item">
-                    <a href="/showfollows?id={{id}}">Follow</a><br>{{follow}}
+                    <a href="/followandfollowers/showfollows?id={{id}}">Follow</a><br>{{follow}}
                 </div>
                 <div class="col-md-4 col-sm-2 item">
-                    <a href="/showfollowers?id={{id}}">Followers</a><br>{{followers}}
+                    <a href="/followandfollowers/showfollowers?id={{id}}">Followers</a><br>{{followers}}
                 </div><br>
             </div>
 
@@ -26,8 +26,8 @@
             {% for creak in liked_creaks %}
             <div class="exercise-tables-background center-block" style="background-color: powderblue">
                 <p style="text-align: left; color: black;font-size: 14px">{{name}}&nbsp;{{surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
-                <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
-                <p style="text-align: center; color: black; font-size: 16px"><a href="/deletelikecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-heart" style="color: red"></i></a></p>
+                <div style="text-align: left; color: black; font-size: 16px; white-space: pre; padding-left: 15px">{{creak.creak}}</div>
+                <p style="text-align: center; color: black; font-size: 16px"><a href="/creak/deletelikecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-heart" style="color: red"></i></a></p>
 
             </div>
             {% endfor %}

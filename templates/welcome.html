@@ -53,16 +53,16 @@
 {% endif %}
 <div class="center-block col-md-3 col-sm-2 item">
     <div class="exercise-tables-background center-block">
-        <h4><a href="/profile?id={{id}}">{{name}}&nbsp;{{surname}}</a></h4><br>@{{username}}
+        <h4><a href="/user/profile?id={{id}}">{{name}}&nbsp;{{surname}}</a></h4><br>@{{username}}
         <div class="exercise-tables-background center-block">
             <div class="col-md-4 col-sm-2 item">
-                <a href="/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
+                <a href="/creak/showcreak?id={{id}}">Creaks</a><br>{{creaks}}
             </div>
             <div class="col-md-4 col-sm-2 item">
-                <a href="/showfollows?id={{id}}">Follow</a><br>{{follow}}
+                <a href="/followandfollowers/showfollows?id={{id}}">Follow</a><br>{{follow}}
             </div>
             <div class="col-md-4 col-sm-2 item">
-                <a href="/showfollowers?id={{id}}">Followers</a><br>{{followers}}
+                <a href="/followandfollowers/showfollowers?id={{id}}">Followers</a><br>{{followers}}
             </div><br>
         </div>
     </div>
@@ -70,7 +70,7 @@
     <div class="exercise-tables-background center-block">
         <h5>Search People</h5><br>
 
-        <form class="form-inline" action="/showusers?id={{id}}" onsubmit="javascript: return validate()" method="get">
+        <form class="form-inline" action="/user/showusers?id={{id}}" onsubmit="javascript: return validate()" method="get">
           <div class="form-group mx-sm-3 mb-2">
             <input type="text" class="form-control" id="search" name="search" placeholder="Enter a name">
           </div>
@@ -82,31 +82,9 @@
         </div>
     </div>
 
-	<!--<div class="exercise-tables-background center-block">
-        <table id="table-margin" class="table">
-				<thead>
-				<tr>
-					<th>Last trends</th>
-				</tr>
-			</thead>
-			<tbody>
-
-                <tr>
-                    <td class=""><a href=""><span class="">#Hello world</span></a></td>
-                </tr>
-                <tr>
-                    <td class=""><a href=""><span class="">#Bruno</span></a></td>
-                </tr>
-                <tr>
-                    <td class=""><a href=""><span class="">#BD</span></a></td>
-                </tr>
-
-			</tbody>
-        </table>
-    </div>-->
 </div>
 
-<form action="/addcreak?id={{id}}" method="post">
+<form action="/creak/addcreak?id={{id}}" method="post">
     <div id="center-view" class="center-block col-md-6 col-sm-8 item">
         <div class="exercise-tables-background center-block">
             <h1 id="font-title"><input class="form-control" onClick="javascript:A();" type="text" style="display: block;"  id="crunch" name="crunch" placeholder="What are you thinking about?" /></h1>
@@ -119,18 +97,18 @@
             {% for creak in user_creaks %}
                 <div class="exercise-tables-background center-block" style="background-color: powderblue">
                     <p style="text-align: left; color: black;font-size: 14px">{{creak.name}}&nbsp;{{creak.surname}}&nbsp;&nbsp;<i style="color: #7d8285;font-size: 13px">@{{creak.user}}</i></p>
-                    <p style="text-align: left; color: black; font-size: 16px">&nbsp;&nbsp;&nbsp;&nbsp;{{creak.creak}}</p>
+                    <div style="text-align: left; color: black; font-size: 16px; white-space: pre; padding-left: 15px">{{creak.creak}}</div>
                     <p style="text-align: center-right">
                         {% if creak.user != username %}
-                            <a href="/recreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-retweet" style="color: green;"></i></a>&nbsp;&nbsp;
+                            <a href="/creak/recreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-retweet" style="color: green;"></i></a>&nbsp;&nbsp;
                         {% endif %}
                         {% if creak.key.urlsafe() in like %}
-                            <a href="/deletelikecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-heart" style="color: red"></i></a>
+                            <a href="/creak/deletelikecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-heart" style="color: red"></i></a>
                         {% else %}
-                            <a href="/likecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="far fa-heart" style="color: red"></i></a>
+                            <a href="/creak/likecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="far fa-heart" style="color: red"></i></a>
                         {% endif %}
                         {% if creak.user == username %}
-                            &nbsp;<a href="/deletecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-trash-alt" style="color: indianred;"></i></a></p>
+                            &nbsp;<a href="/creak/deletecreak?id={{id}}&idcreak={{creak.key.urlsafe()}}"><i class="fas fa-trash-alt" style="color: indianred;"></i></a></p>
                         {% endif %}
                     </p>
                 </div>
