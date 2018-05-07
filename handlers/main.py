@@ -20,7 +20,6 @@ from model.register import Register
 
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import webapp
-from appSession import Session
 from google.appengine.api import users
 
 import time

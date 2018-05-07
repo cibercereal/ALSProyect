@@ -24,7 +24,7 @@ class ShowLikes(webapp2.RequestHandler):
             for i in likes:
                 var.append(ndb.Key(urlsafe=i.idcreak).get())
                 print(var)
-            #liked_creaks = Creak.query(Creak.key.urlsafe().IN(var)).order(-Creak.time)
+
             values = {
                 "username": user.username,
                 "name": user.name,
