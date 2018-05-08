@@ -23,7 +23,7 @@ class ShowLikes(webapp2.RequestHandler):
             var = []
             for i in likes:
                 var.append(ndb.Key(urlsafe=i.idcreak).get())
-                print(var)
+
 
             values = {
                 "username": user.username,
