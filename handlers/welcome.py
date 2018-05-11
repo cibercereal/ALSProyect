@@ -25,6 +25,16 @@ class Welcome(webapp2.RequestHandler):
                     creaks.append(i.usernameToFollow)
 
             user_creaks = Creak.query(ndb.OR(Creak.user == user.username, Creak.user.IN(creaks))).order(-Creak.time)
+            for n in user_creaks:
+                i = 0
+                t = ""
+                for c in n.creak:
+                    t += c
+                    if i == 54:
+                        t += c + "\n"
+                        i = 0
+                    i += 1
+                n.creak = t
             likes = []
             like = Like.query(Like.iduser == user.username)
             for j in like:
@@ -44,6 +54,17 @@ class Welcome(webapp2.RequestHandler):
             }
         else:
             user_creaks = Creak.query(Creak.user == user.username).order(-Creak.time)
+            for n in user_creaks:
+                i = 0
+                t = ""
+                for c in n.creak:
+                    t += c
+                    if i == 54:
+                        t += c + "\n"
+                        i = 0
+                    i += 1
+                n.creak = t
+
             likes = []
             like = Like.query(Like.iduser == user.username)
             for j in like:

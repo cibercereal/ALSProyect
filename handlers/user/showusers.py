@@ -22,6 +22,16 @@ class ShowUsers(webapp2.RequestHandler):
 
         if users.count() == 0:
             user_creaks = Creak.query(Creak.user == user.username).order(-Creak.time)
+            for n in user_creaks:
+                i = 0
+                t = ""
+                for c in n.creak:
+                    t += c
+                    if i == 54:
+                        t += c + "\n"
+                        i = 0
+                    i += 1
+                n.creak = t
             values = {
                 "error_login": "The user you are looking for does not exist.",
                 "username": user.username,
@@ -43,6 +53,16 @@ class ShowUsers(webapp2.RequestHandler):
                                 email=i.email,creaks=i.creaks,follow=i.follow,followers=i.followers)
 
             user_creaks = Creak.query(Creak.user == users.username).order(-Creak.time)
+            for n in user_creaks:
+                i = 0
+                t = ""
+                for c in n.creak:
+                    t += c
+                    if i == 54:
+                        t += c + "\n"
+                        i = 0
+                    i += 1
+                n.creak = t
 
             follow = Follow.query(ndb.AND(Follow.username == user.username, Follow.usernameToFollow == users.username))
             likes = []
